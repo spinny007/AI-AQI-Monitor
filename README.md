@@ -35,9 +35,9 @@ This project is a high-precision IoT monitoring station that fuses local air qua
 
 
 Troubleshooting the Compilation Warning for LCD
-If you want to get that "Warning" text out of your console for a "cleaner" build:
-Open your Arduino Library folder (usually Documents/Arduino/libraries).
-Find the LiquidCrystal_I2C folder and open the library.properties file.
-Find the line architectures=* or architectures=avr.
-Change it to architectures=esp8266,avr,*.
-Save and re-compile. The warning will vanish.
+* If you want to get that "Warning" text out of your console for a "cleaner" build:
+* Open your Arduino Library folder (usually Documents/Arduino/libraries).
+* Find the LiquidCrystal_I2C folder and open the library.properties file.
+* Find the line architectures=* or architectures=avr.
+* Change it to architectures=esp8266,avr,*.
+* Save and re-compile. The warning will vanish.
