@@ -4,7 +4,6 @@
 
 This project is a high-precision IoT monitoring station that fuses local air quality data with global atmospheric intelligence. Using an ESP8266, it monitors indoor pollutants, fetches real-time outdoor AQI via the OpenWeather API, and provides actionable health advice through a dual-display interface.
 
-[Image of an ESP8266 air quality monitor with OLED and LCD displays]
 
 ---
 
