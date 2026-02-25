@@ -1,2 +1,16 @@
 # AI-AQI-Monitor
-Bridging Local Sensors with Global Climate Intelligence, .
+Bridging Local Sensors with Global Climate Intelligence.
+
+This README.md is designed specifically for your final integrated code. It covers the technical architecture, the unique "Sensor Fusion" logic, and the cloud comparative analysis features.🌍 AI Smart Air Quality NodeAdvanced Local-to-Cloud Environment MonitorThis project is a high-precision IoT monitoring station that uses an ESP8266 to bridge the gap between indoor air quality sensors and global air pollution data. It features a unique dual-display system and a custom Sensor Fusion algorithm to detect gas leaks, smoke, and general pollutants while providing actionable health advice.✨ FeaturesDual-Display Interface:OLED (SSD1306): Mobile-style UI with status icons (WiFi, Sensor Health) and alternating AQI screens.LCD (16x2): Persistent data dashboard for real-time monitoring of indoor vs. outdoor levels.AI Sensor Fusion:Fuses data from MQ-2 (Smoke/LPG) and MQ-135 (Air Quality).Health Check: Monitors deviation between dual sensors; if one fails, it flags a "Sensor Fault" but maintains operation.Cloud Intelligence:OpenWeather API: Real-time local outdoor AQI fetching via Pincode.Decision Logic: Automatically advises to "Open Windows" or "Stay Inside" based on indoor/outdoor comparisons.Firebase Integration: Real-time data streaming and historical logging.Local Web Dashboard: Hosted AsyncWebServer providing live JSON data and weather forecast tables.🔌 Hardware SetupWiring TableComponentESP8266 PinNotesADS1115 (I2C)D2 (SDA), D1 (SCL)16-bit ADC for MQ SensorsOLED / LCD (I2C)D2 (SDA), D1 (SCL)Shared I2C BusDHT22D4 (GPIO 2)Temperature & HumidityBuzzerD8 (GPIO 15)Active High for Gas AlertsStatus LEDsD5, D6, D7Blue (WiFi), Red (Fault), Yellow (Web)💻 Software Installation1. Libraries RequiredInstall these via the Arduino Library Manager:WiFiManagerESPAsyncWebServerArduinoJsonAdafruit_ADS1X15Adafruit_SSD1306Firebase_ESP8266_ClientDHT sensor library2. ConfigurationUpdate the following placeholders in the code before uploading:YOUR_OPENWEATHER_API_KEY: Get from OpenWeatherMap.your-db.firebaseio.com: Your Firebase Realtime Database URL.your-secret: Your Firebase Database Secret (Legacy Token).3. Compilation FixIf you encounter an HTTP_GET conflict error during compilation, ensure your includes follow this specific order:C++#include <WiFiManager.h>
+#define WEBSERVER_H 
+#include <ESPAsyncWebServer.h>
+🛠️ Calibration & OperationWiFi Setup: On first boot, connect to the "AI_Air_Node" hotspot and enter your WiFi credentials and local Pincode.Burn-In: MQ sensors require a 24-hour "burn-in" period for stable readings.Thresholds: The system triggers a GAS ALERT if the average MQ-2 value exceeds 2000 or MQ-135 exceeds 1500.📊 Advice Logic TableConditionAdviceDescription$Indoor AQI > Outdoor AQI$OPEN WINDOWSIndoor air is more polluted than outside.$Indoor AQI < Outdoor AQI$STAY INSIDESmog or high pollution levels detected outside.$Indoor AQI \approx Outdoor AQI$AIR BALANCEDEnvironment is stabilized.
+
+
+Troubleshooting the Compilation Warning for LCD
+If you want to get that "Warning" text out of your console for a "cleaner" build:
+Open your Arduino Library folder (usually Documents/Arduino/libraries).
+Find the LiquidCrystal_I2C folder and open the library.properties file.
+Find the line architectures=* or architectures=avr.
+Change it to architectures=esp8266,avr,*.
+Save and re-compile. The warning will vanish.
